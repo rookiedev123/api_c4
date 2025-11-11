@@ -11,6 +11,8 @@ const app = express();
 const jwt = require('jsonwebtoken');
 console.log(jwt.sign({}, process.env.JWT_SECRET))
 
+console.log("hola")
+
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
