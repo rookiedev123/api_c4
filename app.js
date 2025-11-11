@@ -9,6 +9,7 @@ const cors = require('cors');
 const app = express();
 
 const jwt = require('jsonwebtoken');
+console.log(jwt.sign({}, process.env.JWT_SECRET))
 
  
 app.use(express.json());
@@ -27,7 +28,6 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/estudiantes', require('./routes/estudiantesRoutes'));
 
-console.log(jwt.sign({}, process.env.JWT_SECRET, { expiresIn: '1h' }))
  
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
