@@ -1,4 +1,6 @@
 const Estudiante = require('../models/Estudiante');
+const { validationResult } = require('express-validator');
+
  
 exports.listar = async (req, res) => {
   const lista = await Estudiante.find();

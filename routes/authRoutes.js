@@ -1,7 +1,8 @@
 const express = require('express');
-const { body, validationResult } = require('express-validator');
 const router = express.Router();
 const authController = require('../controllers/authController');
+const { body } = require('express-validator');
+
  
 router.post('/registro', [
   body('correo').isEmail().withMessage('Correo inválido').normalizeEmail(),
