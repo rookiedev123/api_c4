@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 
  
 router.post('/registro', [
-  body('correo').isEmail().withMessage('Correo inválido').normalizeEmail(),
+  body('correo').isEmail().withMessage('Correo inválido').normalizeEmail().escape(),
   body('contraseña').isLength({ min: 3 }).withMessage('La contraseña debe tener al menos 6 caracteres')
 ],authController.registrar);
 
