@@ -6,7 +6,18 @@ exports.listar = async (req, res) => {
 };
  
 exports.crear = async (req, res) => {
-  const estudiante = new Estudiante(req.body);
-  await estudiante.save();
-  res.status(201).json(estudiante);
+
+  const errores = validationResult(req);
+  if (!errores.isEmpty()) {
+    return res.status(400).json({ errores: errores.array() });
+  }
+
+  try {
+    const estudiante = new Estudiante(req.body);
+    await estudiante.save();
+    res.status(201).json(estudiante);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al guardar el estudiante' });
+  }
+
 };
